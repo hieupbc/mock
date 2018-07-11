@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>UPDATE RESPONSE</title>
+<div th:replace="layout::css-js-admin"></div>
+</head>
+<body>
+	<div th:replace="layout::navbar"></div>
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default"  style="margin-top:40px">
+					<div class="panel-heading" >
+						<div class="row d-inline">
+							<div class="col-md-10">
+								<h4>Status</h4>
+								<h5>
+									<label th:text="${responseMessage}" class="label label-info"></label>
+								</h5>
+							</div>
+
+						</div>
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<table class="table">
+							<form th:action="@{/admin/users}" method='GET'
+								th:object="${userUpdateForm}">
+								<div>
+									<tr>
+										<td>EMAIL:</td>
+										<td><label th:if="${#fields.hasErrors('email')}"
+											th:errors="*{email}">Email Error</label></td>
+									</tr>
+								</div>
+								<div>
+									<tr>
+										<td>NAME:</td>
+										<td><label th:if="${#fields.hasErrors('name')}"
+											th:errors="*{name}">Name Error</label></td>
+									</tr>
+								</div>
+								<div>
+									<tr>
+										<td>ID:</td>
+										<td><label th:if="${#fields.hasErrors('id')}"
+											th:errors="*{id}">Id Error</label></td>
+									</tr>
+								</div>
+								<div>
+									<tr>
+										<td>ENABLED:</td>
+										<td><label th:if="${#fields.hasErrors('enabled')}"
+											th:errors="*{enabled}">Error</label></td>
+									</tr>
+								</div>
+								<div>
+									<tr>
+										<td>ROLES:</td>
+										<td><label th:if="${#fields.hasErrors('roles')}"
+											th:errors="*{roles}">Roles Error</label></td>
+									</tr>
+								</div>
+								<tr>
+									<td><input class="btn btn-success" type="submit"
+										value="Click here to come back to user manager page" /></td>
+									<td></td>
+								</tr>
+							</form>
+						</table>
+
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+
+	</div>
+	<!-- /#page-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+
+
+	<div th:replace="layout::end-js-admin"></div>
+</body>
+</html>

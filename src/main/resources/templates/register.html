@@ -1,0 +1,107 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- Head -->
+<head>
+
+<title>Bus Booking Website - Register</title>
+
+<div th:replace="layout::css-js"></div>
+
+
+</head>
+<!-- //Head -->
+
+	<!-- Body -->
+	<body>
+	<div th:replace="layout::navbar-user"></div>
+
+		<h1>REGISTER FORM</h1>
+
+		<div class="containerw3layouts-agileits">
+
+			<h2>Please fill this form to register</h2>
+
+			<div class="w3layoutscontactagileits">
+				<form th:action="@{/register}" th:object="${userRegisterForm}" method="POST">
+					
+					<div class="agileemailinfo agileinfow3ls">
+						<div class="agileemailinfo-lable wthreelable">
+							<label>Full Name</label><span class="colon">:</span>
+						</div>
+						<div class="agileemailinfo-input wthreeinput">
+							<input class="top" th:field="*{name}" type="text" name="name" placeholder="Name" required="">
+							<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name
+						Error</label>
+						</div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="agileemailinfo agileinfow3ls">
+						<div class="agileemailinfo-lable wthreelable">
+							<label>Email</label><span class="colon">:</span>
+						</div>
+						<div class="agileemailinfo-input wthreeinput">
+							<input class="top" th:field="*{email}" type="email" name="email" placeholder="Email" required="">
+							<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email
+						Error</label>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+					<div class="wthreename agileinfow3ls">
+						<div class="wthreename-lable wthreelable">
+							<label>Password</label><span class="colon">:</span>
+						</div>
+						<div class="wthreename-input wthreeinput">
+							<input class="top" th:field="*{password}" type="password" name="password" placeholder="Password" required="">
+							<label th:if="${#fields.hasErrors('password')}"
+						th:errors="*{password}" >Password Error</label>
+						</div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="wthreename agileinfow3ls">
+						<div class="wthreename-lable wthreelable">
+							<label>Repeat Password</label><span class="colon">:</span>
+						</div>
+						<div class="wthreename-input wthreeinput">
+							<input class="top" type="password" name="retypedPassword" placeholder="Repeat Password" required="">
+							<label th:if="${#fields.hasGlobalErrors()}"
+						 >Passwords dont match</label>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+					<div class="aitssubmitw3ls">
+						<input type="submit" value="SUBMIT">
+					</div>
+					<div class="aitssubmitw3ls ">
+						<a th:href="@{/login}" style="color: white">If you already have an account, click here to login</a></div>
+
+				</form>
+			</div>
+
+		</div>
+
+		<div class="w3lsfooteragileits">
+			<p> &copy; 2018 Bus Booking Form. All Rights Reserved | Design by <a href="http://localhost:5000/home" target="=_blank">Java Fresher 121</a></p>
+		</div>
+
+
+	</body>
+	<!-- //Body -->
+
+</html>

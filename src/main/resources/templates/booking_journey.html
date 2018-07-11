@@ -1,0 +1,157 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- Head -->
+<head>
+
+<title>Bus Booking Website - Journey Booking</title>
+
+<!-- Meta-Tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords"
+	content="Taxi Booking Form Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+<script type="application/x-javascript">
+	
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    
+</script>
+<!-- //Meta-Tags -->
+
+<!-- Custom-Style-Sheet -->
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/jquery-ui.css" type="text/css"
+	media="all">
+<link rel="stylesheet" type="text/css"
+	href="vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<!-- //Custom-Style-Sheet -->
+
+<!-- Fonts -->
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Montserrat:400,700"
+	type="text/css" media="all">
+<!-- //Fonts -->
+<style>
+body {
+	color: white;
+}
+</style>
+
+</head>
+
+<body>
+	<div th:replace="layout :: navbar-user">...</div>
+	<form th:action="@{/}" method="post" class="formJourney">
+		<div class="limiter">
+			<div class="container-table100">
+				<div class="wrap-table100">
+					<h1>JOURNEY BOOKING FORM</h1>
+					<div class="table100 ver4 m-b-110">
+						<table data-vertable="ver4">
+							<thead>
+								<tr class="row100 head">
+									<th class="column100 column1" data-column="column1">Journey
+										ID</th>
+									<th class="column100 column2" data-column="column2">Departure
+										Date</th>
+									<th class="column100 column3" data-column="column3">Departure
+										Time</th>
+									<th class="column100 column4" data-column="column4">Duration</th>
+									<th class="column100 column5" data-column="column5">Bus</th>
+									<th class="column100 column6" data-column="column6">From</th>
+									<th class="column100 column7" data-column="column7">To</th>
+									<th class="column100 column8" data-column="column8">Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:if="${journeys.isEmpty()}">
+									<div>Cant find any journey that match your request</div>
+									<div>
+										<a th:href="@{/bookingform}">Click here to come back to
+											booking page</a>
+									</div>
+								</tr>
+								<tr th:if="${!journeys.isEmpty()}" class="row100"
+									th:each="journey : ${journeys}">
+									<td class="column100 column1" data-column="column1"
+										th:text="${journey.id}"></td>
+									<td class="column100 column2" data-column="column2"
+										th:text="${journey.departDate}"></td>
+									<td class="column100 column3" data-column="column3"
+										th:text="${journey.departTime}"></td>
+									<td class="column100 column4" data-column="column4"
+										th:text="${journey.route.duration}"></td>
+									<td class="column100 column5" data-column="column5"
+										th:text="${journey.bus.busName}"></td>
+									<td class="column100 column6" data-column="column6"
+										th:text="${journey.route.departure.name}"></td>
+									<td class="column100 column7" data-column="column7"
+										th:text="${journey.route.destination.name}"></td>
+									<td class="column100 column8" data-column="column8">8:00
+										AM</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<div class="w3lsfooteragileits">
+		<p>
+			&copy; 2018 Bus Booking Form. All Rights Reserved | Design by <a
+				href="http://localhost:5000/home" target="=_blank">Java Fresher
+				121</a>
+		</p>
+	</div>
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$(".row100")
+									.click(
+											function() {
+												var idJourney = $(this)
+														.find(
+																"td[class='column100 column1']")
+														.text();
+												window.location = '/selectseat?idJourney='
+														+ idJourney;
+											});
+						});
+	</script>
+</body>
+<!-- //Body -->
+
+</html>

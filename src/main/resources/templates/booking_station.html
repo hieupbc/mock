@@ -1,0 +1,209 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- Head -->
+<head>
+
+<title>Bus Booking Website</title>
+
+<!-- Meta-Tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords"
+	content="Taxi Booking Form Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+<script type="application/x-javascript">
+	
+	
+	
+	
+	
+	
+
+
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+
+
+    
+
+
+
+
+
+</script>
+<!-- //Meta-Tags -->
+
+<!-- Custom-Style-Sheet -->
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/jquery-ui.css" type="text/css"
+	media="all">
+
+
+<!-- //Custom-Style-Sheet -->
+
+<!-- Fonts -->
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Montserrat:400,700"
+	type="text/css" media="all">
+<!-- //Fonts -->
+</head>
+<!-- //Head -->
+
+
+<!-- Body -->
+<body>
+
+	<div th:replace="layout :: navbar-user">...</div>
+	<h1>BUS BOOKING FORM</h1>
+
+	<div class="containerw3layouts-agileits">
+
+		<h2>To reserve the ride, please complete and submit the booking
+			form.</h2>
+
+		<div class="w3layoutscontactagileits">
+			<form th:action="@{/journey}" method="get"
+				th:object="${journeySearchForm}">
+				<div class="agileinfodeparture agileinfow3ls">
+					<div class="agileinfodeparture-lable wthreelable">
+						<span class="lable"> <label>Departure Date</label>
+						</span> 
+					</div>
+					<div class="agileinfodeparture-input wthreeinput">
+						<input class="date agileits w3layouts" id="datepicker1"
+							type="text" value="Date" th:field="*{departDate}"
+							onfocus="this.value = '';"
+							onblur="if (this.value == '') {this.value = '';}" required="">
+						<div th:if="${#fields.hasErrors('departDate')}"
+							th:errors="*{departDate}">Please enter a valid date</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="aitspickupaddress agileinfow3ls">
+					<div class="aitspickupaddress-lable wthreelable">
+						<span class="agilepickup-lable"> <label>Departure</label>
+						</span>
+					</div>
+					<div class="w3lsjourneyaits-input wthreeinput">
+						<select class="from" th:field="*{from}">
+							<option th:value="0" selected="true">--------------</option>
+							<option th:each="station : ${stations}" th:text="${station.name}"
+								th:value="${station.id}"></option>
+						</select>
+						<div>
+							<label th:if="${#fields.hasErrors('from')}" th:errors="*{from}">Please
+								choose a valid station</label>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="aitspickupaddress agileinfow3ls">
+					<div class="aitspickupaddress-lable wthreelable">
+						<span class="agilepickup-lable"> <label>Destination</label>
+							<label>Address</label>
+						</span> 
+					</div>
+					<div class="w3lsjourneyaits-input wthreeinput">
+						<select class="to" th:field="*{to}">
+							<option th:value="0">--------------</option>
+						</select>
+						<div>
+							<label th:if="${#fields.hasErrors('to')}" th:errors="*{to}">Please
+								choose a valid station</label>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="aitssubmitw3ls">
+					<input type="submit" value="SUBMIT">
+				</div>
+
+			</form>
+		</div>
+
+	</div>
+
+	<!-- Necessary-JavaScript-Files-&-Links -->
+
+	<!-- Default-JavaScript -->
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+
+	<!-- Date-Picker-JavaScript -->
+	<script src="js/jquery-ui.js"></script>
+	<script>
+		$(function() {
+			$("#datepicker1,#datepicker2").datepicker();
+		});
+		$(".from")
+				.change(
+						function(e) {
+							var departure = this.options[e.target.selectedIndex].index;
+							$
+									.ajax({
+										url : "/destSelectOption",
+										data : {
+											departure : departure
+										},
+										type : "GET",
+										dataType : "json",
+										success : function(result) {
+											console.log(typeof (result))
+											var text = '';
+											for ( var key in result) {
+												//if(result.hasOwnProperty(key)){
+												text += '<option value="' + result[key]["id"] + '">'
+														+ result[key]['name']
+														+ '</option>';
+												//}
+											}
+											$('.to').html(text);
+											//here i get data is not defined, textStatus not defined ??
+										},
+										error : function() {
+											console.log("Error");
+										}
+									});
+						});
+	</script>
+	<!-- //Date-Picker-JavaScript -->
+
+	<!-- //Necessary-JavaScript-Files-&-Links -->
+
+	<div class="w3lsfooteragileits">
+		<p>
+			&copy; 2018 Bus Booking Form. All Rights Reserved | Design by <a
+				href="http://localhost:5000/home" target="=_blank">Java Fresher
+				121</a>
+		</p>
+	</div>
+
+</body>
+<!-- //Body -->
+
+</html>

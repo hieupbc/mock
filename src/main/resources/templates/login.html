@@ -1,0 +1,101 @@
+
+
+<!DOCTYPE html>
+
+<!-- Thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- Meta-Tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords"
+	content="Taxi Booking Form Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+<script type="application/x-javascript">
+	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+</script>
+<!-- //Meta-Tags -->
+
+<!-- Head -->
+<head>
+
+    <title>Bus Booking Website - Login</title>
+
+    <div th:replace="layout::css-js"></div>
+    
+    <div th:replace="layout :: navbar-user">...</div>
+    
+    <!-- Custom-Style-Sheet -->
+	<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" media="all">
+	<link rel="stylesheet" th:href="@{/css/agency.css}" type="text/css" media="all">
+	<link rel="stylesheet" th:href="@{/css/jquery-ui.css}" type="text/css"
+		media="all">
+	<!-- //Custom-Style-Sheet -->
+	
+	<!-- Fonts -->
+	<link rel="stylesheet"
+		href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+		type="text/css" media="all">
+	<link rel="stylesheet"
+		href="//fonts.googleapis.com/css?family=Montserrat:400,700"
+		type="text/css" media="all">
+<!-- //Fonts -->
+
+</head>
+<!-- //Head -->
+
+
+<!-- Body -->
+<body>
+
+<h1>LOGIN FORM</h1>
+
+<div class="containerw3layouts-agileits">
+
+    <h2>You have to log in to continue</h2>
+
+    <div class="w3layoutscontactagileits">
+        <form th:action="@{/login}" method="POST">
+
+            <div class="agileemailinfo agileinfow3ls">
+                <div class="agileemailinfo-lable wthreelable">
+                    <label>Email</label><span class="colon">:</span>
+                </div>
+                <div class="agileemailinfo-input wthreeinput">
+                    <input class="top" type="email" name="email" placeholder="Email" required="">
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="wthreename agileinfow3ls">
+                <div class="wthreename-lable wthreelable">
+                    <label>Password</label><span class="colon">:</span>
+                </div>
+                <div class="wthreename-input wthreeinput">
+                    <input class="top" type="password" name="password" placeholder="Password" required="">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="aitssubmitw3ls">
+
+                <p style="color: white"><input type="checkbox" name="remember-me"> Remember me ?</p>
+            </div>
+            <div class="aitssubmitw3ls">
+                <input type="submit"  value="SUBMIT">
+            </div>
+            <div class="aitssubmitw3ls ">
+                <a th:href="@{/register}" style="color: white">If you dont have an account, click here to register</a>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+	<div class="w3lsfooteragileits">
+		<p> &copy; 2018 Bus Booking Form. All Rights Reserved | Design by <a href="http://localhost:5000/home" target="=_blank">Java Fresher 121</a></p>
+	</div>
+
+</body>
+<!-- //Body -->
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl_PL" xmlns:th="http://www.thymeleaf.org">
+
+	<!--Modal-Create Form  -->
+    <form name="createForm" th:fragment="create-user" th:action="@{/admin/user/create}" id="create"
+          th:object="${userCreateForm}">
+        <div class="form-group">
+            <label for="id">Id:</label>
+            <input type="text"
+                   class="form-control" readonly name="id" id="createId">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" class="form-control" id="createEmail" required name="email">
+        </div>
+        <div class="form-group">
+            <label for="createPassword">Password :</label>
+            <input type="text" class="form-control" th:name="password" required id="createPassword">
+        </div>
+        <div class="form-group">
+            <label for="text">Full name:</label>
+            <input type="text" class="form-control" id="createName" required name="name">
+        </div>
+        <div class="form-group">
+            <label for="createEnabled">Enabled:</label>
+            <select name="enabled">
+                <option th:id="true">true</option>
+                <option th:id="false">false</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <ul id="createRoleList" style="list-style-type: none">
+                <label th:field="*{roles}">
+                    <li th:each="role,index: ${roleList}">
+                        <p th:text="${role.name}" hidden="true"></p>
+                        <input th:id="${role.name+'CREATE'}" type="checkbox" th:field="*{roles}" th:value="${role.name}"
+                               th:text="${role}"/>
+                    </li>
+                </label>
+            </ul>
+        </div>
+
+        <button type="submit" class="btn btn-default createsubmitbtn">Submit</button>
+
+    </form>
+
+
+	<!--Modal-Edit Form  -->
+    <form th:fragment="update-user" th:action="@{/admin/user/update}" id="edit"
+          th:object="${userUpdateForm}" method="POST">
+
+        <div class="form-group">
+            <label for="id">Id:</label>
+            <input readonly type="number" th:field="*{id}" required class="form-control" id="editId">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address:</label>
+            <input readonly type="email" th:field="*{email}" required class="form-control" id="editEmail">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Full name:</label>
+            <input type="text" th:field="*{name}" required class="form-control" id="editName">
+        </div>
+        <div class="form-group">
+            <label for="enabled">Enabled:</label>
+            <select th:field="*{enabled}" th:name="editEnabled">
+                <option value="true" id="true">true</option>
+                <option value="false" id="false">false</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="accountBalance">Balance :</label>
+            <input type="number" th:field="*{accountBalance}" required class="form-control"
+                   id="editBalance">
+        </div>
+
+        <div class="form-group">
+            <ul id="editrolelist" style="list-style-type: none">
+                <label>
+                    <li th:each="role,index: ${roleList}">
+                        <p th:text="${role.name}" hidden="true"></p>
+                        <input th:id="${role.name+'EDIT'}" type="checkbox" th:field="*{roles}" th:value="${role}"
+                               th:text=" ${role}"/>
+                    </li>
+                </label>
+            </ul>
+        </div>
+
+        <button type="button" class="btn btn-default editsubmitbtn">Submit</button>
+    </form>
+
